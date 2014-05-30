@@ -1,0 +1,450 @@
+<!doctype html>
+
+<!--
+
+    Welcome to the light side of the source, young padawan.
+
+    One step closer to learn something interesting you are...
+
+                               ____                  
+                            _.' :  `._               
+                        .-.'`.  ;   .'`.-.           
+               __      / : ___\ ;  /___ ; \      __  
+             ,'_ ""=-.:__;".-.";: :".-.":__;.-="" _`,
+             :' `.t""=-.. '<@.`;_  ',@:` ..-=""j.' `;
+                  `:-.._J '-.-'L__ `-.-' L_..-;'     
+                    "-.__ ;  .-"  "-.  : __.-"       
+                        L ' /.======.\ ' J           
+                         "-.   "__"   .-"            
+                        __.l"-:_JL_;-";.__           
+                     .-j/'.;  ;""""  / .'\"-.        
+                   .' /:`. "-.:     .-" .';  `.      
+                .-"  / ;  "-. "-..-" .-"  :    "-.   
+             .+"-.  : :      "-.__.-"      ;-._   \  
+             ; \  `.; ;                    : : "+. ; 
+             :  ;   ; ;                    : ;  : \: 
+             ;  :   ; :                    ;:   ;  : 
+            : \  ;  :  ;                  : ;  /  :: 
+            ;  ; :   ; :                  ;   :   ;: 
+            :  :  ;  :  ;                : :  ;  : ; 
+            ;\    :   ; :                ; ;     ; ; 
+            : `."-;   :  ;              :  ;    /  ; 
+             ;    -:   ; :              ;  : .-"   : 
+             :\     \  :  ;            : \.-"      : 
+              ;`.    \  ; :            ;.'_..-=  / ; 
+              :  "-.  "-:  ;          :/."      .'  :
+               \         \ :          ;/  __        :
+                \       .-`.\        /t-""  ":-+.   :
+                 `.  .-"    `l    __/ /`. :  ; ; \  ;
+                   \   .-" .-"-.-"  .' .'j \  /   ;/ 
+                    \ / .-"   /.     .'.' ;_:'    ;  
+                     :-""-.`./-.'     /    `.___.'   
+                           \ `t  ._  /               
+                            "-.t-._:'                
+
+-->
+
+<!--
+    
+    So you'd like to know how to use impress.js?
+    
+    You've made the first, very important step - you're reading the source code.
+    And that's how impress.js presentations are built - with HTML and CSS code.
+    
+    Believe me, you need quite decent HTML and CSS skills to be able to use impress.js effectively.
+    And what is even more important, you need to be a designer, too, because there are no default
+    styles for impress.js presentations, there is no default or automatic layout for them.
+    
+    You need to design and build it by hand.
+    
+    So...
+    
+    Would you still like to know how to use impress.js?
+    
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
+    
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <!--
+        
+        Impress.js doesn't depend on any external stylesheet. Script adds all styles it needs for
+        presentation to work.
+        
+        This style below contains styles only for demo presentation. Browse it to see how impress.js
+        classes are used to style presentation steps, or how to apply fallback styles, but I don't want
+        you to use them directly in your presentation.
+        
+        Be creative, build your own. We don't really want all impress.js presentations to look the same,
+        do we?
+        
+        When creating your own presentation get rid of this file. Start from scratch, it's fun!
+        
+    -->
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+
+<!--
+    For example this fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<!--
+    
+    Now that's the core element used by impress.js.
+    
+    That's the wrapper for your presentation steps. In this element all the impress.js magic happens.
+    It doesn't have to be a `<div>`. Only `id` is important here as that's how the script find it.
+    
+    You probably won't need it now, but there are some configuration options that can be set on this element.
+    
+    To change the duration of the transition between slides use `data-transition-duration="2000"` giving it
+    a number of ms. It defaults to 1000 (1s).
+    
+    You can also control the perspective with `data-perspective="500"` giving it a number of pixels.
+    It defaults to 1000. You can set it to 0 if you don't want any 3D effects.
+    If you are willing to change this value make sure you understand how CSS perspective works:
+    https://developer.mozilla.org/en/CSS/perspective
+    
+    But as I said, you won't need it for now, so don't worry - there are some simple but interesing things
+    right around the corner of this tag ;)
+    
+-->
+<div id="impress">
+
+    <!--
+        
+        Here is where interesting thing start to happen.
+        
+        Each step of the presentation should be an element inside the `#impress` with a class name
+        of `step`. These step elements are positioned, rotated and scaled by impress.js, and
+        the 'camera' shows them on each step of the presentation.
+        
+        Positioning information is passed through data attributes.
+        
+        In the example below we only specify x and y position of the step element with `data-x="-1000"`
+        and `data-y="-1500` attributes. This means that **the center** of the element (yes, the center)
+        will be positioned in point x = -1000px and y = -1500px of the presentation 'canvas'.
+        
+        It will not be rotated or scaled.
+        
+    -->
+    <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+        <q>Summary of  <b>keywords</b><br/> 1) Faceted Search</br>2) IVR Junction</br> 3) Video Kheti</q>
+    </div>
+
+    <!--
+        
+        The `id` attribute of the step element is used to identify it in the URL, but it's optional.
+        If it is not defined, it will get a default value of `step-N` where N is a number of slide.
+        
+        So in the example below it'll be `step-2`.
+        
+        The hash part of the url when this step is active will be `#/step-2`.
+        
+        You can also use `#step-2` in a link, to point directly to this particular step.
+        
+        Please note, that while `#/step-2` (with slash) would also work in a link it's not recommended.
+        Using classic `id`-based links like `#step-2` makes these links usable also in fallback mode.
+        
+    -->
+    <div class="step slide" data-x="0" data-y="-1500">
+        <q>Faceted search: <strong>Definition</strong> <br>Faceted (or navigational) search uses a hierarchy structure (taxonomy) to enable users to browse information by choosing from a pre-determined set of categories. This allows a user to type in their simple query, then refine their search options by navigating/drilling down.</br></q>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="-1500">
+        <q>Faceted search: <strong>Definition continued...</strong><br>In reality, it's an advanced search going on in the background, but instead of the user having to think of the additional search categories, it's been made easier for them by the visible folder structure. Examples of this are eCommerce sites like Amazon and eBay.</br></q>
+    </div>
+
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+        <span class="try">Basic web search</span>
+        <h1>Paradigms<sup>*</sup></h1>
+        <span class="footnote"><sup>*</sup>Development of basic web search</span>
+    </div>
+
+    <!--
+        
+        This element introduces rotation.
+        
+        Notation shouldn't be a surprise. We use `data-rotate="90"` attribute, meaning that this
+        element should be rotated by 90 degrees clockwise.
+        
+    -->
+    <div id="its" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+        <p>Basic on <strong>Navigational search</strong> <br/>
+         Faceted Classification : is an analytic-synthetic classification scheme. It classifies objects using multiple taxonomies that express their different attributes or facets rather than classifying using a single taxonomy.</p>
+    </div>
+
+
+
+    <div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
+        <p>IVR junction: <b>Idea</b> <span class="thoughts">& it's working</span></p>
+    </div>
+
+    <!--
+        
+        And now it gets really exciting! We move into third dimension!
+        
+        Along with `data-x` and `data-y`, you can define the position on third (Z) axis, with
+        `data-z`. In the example below we use `data-z="-3000"` meaning that element should be
+        positioned far away from us (by 3000px).
+        
+    -->
+    <div id="tiny" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>IVR Junction is a new system that combines other free and commercial tools into an integrated platform for building scalable voice forums. IVR Junction uses existing cloud-based services to provide free online content moderation, free hosting of audio recordings for dissemination to a global audience, and a novel mechanism to automatically synchronize audio recordings across geographically-dispersed offices, thereby enabling local access points with decreased calling costs. It simplifies the creation of voice forums, by leveraging a Windows-based installer for each client machine and familiar Internet services for hosting and moderation.</p>
+    </div>
+
+    <!--
+        
+        This step here doesn't introduce anything new when it comes to data attributes, but you
+        should notice in the demo that some words of this text are being animated.
+        It's a very basic CSS transition that is applied to the elements when this step element is
+        reached.
+        
+        At the very beginning of the presentation all step elements are given the class of `future`.
+        It means that they haven't been visited yet.
+        
+        When the presentation moves to given step `future` is changed to `present` class name.
+        That's how animation on this step works - text moves when the step has `present` class.
+        
+        Finally when the step is left the `present` class is removed from the element and `past`
+        class is added.
+        
+        So basically every step element has one of three classes: `future`, `present` and `past`.
+        Only one current step has the `present` class.
+        
+    -->
+    <div id="ing" class="step" data-x="3500" data-y="-850" data-rotate="270" data-scale="6">
+       <q><strong>How IVR Junction works</strong>
+           <p>1) User calls to voice forum to record <br/>2) modem connects user to voice forum coded using <b class="rotating">voiceXML</b><br/>3)  IVR Junction code converts the audio file into a video and uploads the video corresponding to recorded message on the configured YouTube <br/>4) YouTube moderator sign-in on the YouTube channel to see if there are new recordings which awaits his approval.And selcet or reject<br/>5) If moderator approves  some further actions taken like posting on social networking sites.</p>
+           <img style="width:700px;height:340px" src="1.png" />
+        
+        </q>
+        
+        <!--<p>by 
+            
+            <b class="positioning">positioning</b>, <b class="rotating">rotating</b> and <b class="scaling">scaling</b> them on an infinite canvas
+        </p>-->
+    </div>
+
+    <div id="imagination" class="step" data-x="6700" data-y="-300" data-scale="6">
+        <p><strong>Video Kheti</strong></p>
+        <q>VideoKheti, a mobile system using speech, graphics, and touch interaction for low-literate farmers in rural India. VideoKheti helps farmers to find and watch agricultural extension videos in their own language.<br/><br/><strong>VIDEOKHETI: DESIGN AND DEVELOPMENT</strong><br/>1) Navigation tree:here are a total of 147 videos available in VideoKheti, classified
+by farming experts according to the features of their
+content. These features were organized in four levels: crop,
+crop cycle, type of action, and type of method. We built a topdown
+navigation tree based on these four levels
+</q>
+    </div>
+
+    <div id="source" class="step" data-x="6300" data-y="2000" data-rotate="20" data-scale="4">
+        <p><strong>GUI description:</strong><br/>The interface of VideoKheti is completely text-free.
+it has three parts:<br/>
+1) header panel, which is present on every screen<br/>
+2) icons showing the choices available at that stage of the navigation<br/>
+3) and breadcrumbs showing what has been selected so far and the position in the hierarchy.<br/>
+The header panel includes three buttons. The back button, on
+the left, allows the user to go back to the previous screen.
+The middle button allows the user to play the system prompts
+for the current screen. Finally, the button on the right is the
+speech input button.</p>
+        
+    </div>
+
+    <div id="one-more-thing" class="step" data-x="6000" data-y="4000" data-scale="2">
+        <p><strong>Speech recognition</strong><br/>VideoKheti therefore uses the SALAAM method to recognize
+the Hindi dialect of the rural villages we were working
+with. SALAAM allows small-vocabulary recognition by using
+the acoustic model of any existing ASR and performing
+cross-language phoneme mapping between the language of
+the ASR and the target language (Hindi, in our case). It is
+fully automatic and requires a very small amount of training
+data. The limitation of this approach is that it can only be
+used efficiently with vocabulary of 100 word types or less,
+where a word type refers to a single word or phrase.</p>
+    </div>
+
+    <!--
+        
+        And the last one shows full power and flexibility of impress.js.
+        
+        You can not only position element in 3D, but also rotate it around any axis.
+        So this one here will get rotated by -40 degrees (40 degrees anticlockwise) around X axis and
+        10 degrees (clockwise) around Y axis.
+        
+        You can of course rotate it around Z axis with `data-rotate-z` - it has exactly the same effect
+        as `data-rotate` (these two are basically aliases).
+        
+    -->
+    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <p><strong>DISCUSSION</strong><br/>Both with and without speech input, we saw similar outcomes
+when farmers tried to use our system. One major finding
+was the impact of education: whether or not participants
+had speech input available, farmers with very little education
+had trouble using VideoKheti. The difficulties encountered
+by low-literate users included problems with understanding
+and remembering scenarios</p>
+        <span class="footnote">*****</span>
+    </div>
+
+    <!--
+        
+        So to make a summary of all the possible attributes used to position presentation steps, we have:
+        
+        * `data-x`, `data-y`, `data-z` - they define the position of **the center** of step element on
+            the canvas in pixels; their default value is 0;
+        * `data-rotate-x`, `data-rotate-y`, 'data-rotate-z`, `data-rotate` - they define the rotation of
+            the element around given axis in degrees; their default value is 0; `data-rotate` and `data-rotate-z`
+            are exactly the same;
+        * `data-scale` - defines the scale of step element; default value is 1
+        
+        These values are used by impress.js in CSS transformation functions, so for more information consult
+        CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
+        
+    -->
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div>
+
+</div>
+
+<!--
+    
+    Hint is not related to impress.js in any way.
+    
+    But it can show you how to use impress.js features in creative way.
+    
+    When the presentation step is shown (selected) its element gets the class of "active" and the body element
+    gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+    so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+    the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+    
+    This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+    the first step of presentation is visible for a couple of seconds.
+    
+    ...
+    
+    And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+    It's just a quick and dirty workaround to get different hint text for touch devices.
+    In a real world it should be at least placed in separate JS file ... and the touch content should be
+    probably just hidden somewhere in HTML - not hard-coded in the script.
+    
+    Just sayin' ;)
+    
+-->
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<!--
+    
+    Last, but not least.
+    
+    To make all described above really work, you need to include impress.js in the page.
+    I strongly encourage to minify it first.
+    
+    In here I just include full source of the script to make it more readable.
+    
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. Not only because it's a good practice, but also
+    because it should be done when the whole document is ready.
+    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+    
+-->
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+<!--
+    
+    The `impress()` function also gives you access to the API that controls the presentation.
+    
+    Just store the result of the call:
+    
+        var api = impress();
+    
+    and you will get three functions you can call:
+    
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+    
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+    
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+    
+-->
+
+</body>
+</html>
+
+<!--
+    
+    Now you know more or less everything you need to build your first impress.js presentation, but before
+    you start...
+    
+    Oh, you've already cloned the code from GitHub?
+    
+    You have it open in text editor?
+    
+    Stop right there!
+    
+    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
+    first needs to grow in your mind.
+    
+    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
+    
+    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
+    to present. It will get you closer and closer to the layout you'll build later with impress.js.
+    
+    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
+    it earlier, because you'll only waste your time fighting with positioning of useless points.
+    
+    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
+    creating awesome and engaging presentations.
+    
+    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
+    
+-->
+
+<!--
+    
+    Are you still reading this?
+    
+    For real?
+    
+    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
+    to congratulate you personally :)
+    
+    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
+    or anything you like to drink. And raise a glass for me ;)
+    
+    Cheers!
+    
+-->
+
